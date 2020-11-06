@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+<data name="InX_Display_Key" ><value>InX</value></data><data name="InX_Desc_Key" ><value>InX</value></data>
+<data name="InY_Display_Key" ><value>InY</value></data><data name="InY_Desc_Key" ><value>InY</value></data>
+<data name="InW_Display_Key" ><value>InW</value></data><data name="InW_Desc_Key" ><value>InW</value></data>
+<data name="InH_Display_Key" ><value>InH</value></data><data name="InH_Desc_Key" ><value>InH</value></data>
+
+<data name="FxX1_Display_Key"  ><value>Fx X1</value> </data><data name="Fx X1_Desc_Key"  ><value>Calc X1</value></data>
+<data name="FxX2_Display_Key"  ><value>Fx X2</value> </data><data name="Fx X2_Desc_Key"  ><value>Calc X2</value></data>
+<data name="FxX3_Display_Key"  ><value>Fx X3</value> </data><data name="Fx X3_Desc_Key"  ><value>Calc X3</value></data>
+<data name="FxX4_Display_Key"  ><value>Fx X4</value> </data><data name="Fx X4_Desc_Key"  ><value>Calc X4</value></data>
+<data name="FxX5_Display_Key"  ><value>Fx X5</value> </data><data name="Fx X5_Desc_Key"  ><value>Calc X5</value></data>
+
+<data name="FxY1_Display_Key"  ><value>Fx Y1</value> </data><data name="Fx Y1_Desc_Key"  ><value>Calc Y1</value></data>
+<data name="FxY2_Display_Key"  ><value>Fx Y2</value> </data><data name="Fx Y2_Desc_Key"  ><value>Calc Y2</value></data>
+<data name="FxY3_Display_Key"  ><value>Fx Y3</value> </data><data name="Fx Y3_Desc_Key"  ><value>Calc Y3</value></data>
+<data name="FxY4_Display_Key"  ><value>Fx Y4</value> </data><data name="Fx Y4_Desc_Key"  ><value>Calc Y4</value></data>
+<data name="FxY5_Display_Key"  ><value>Fx Y5</value> </data><data name="Fx Y5_Desc_Key"  ><value>Calc Y5</value></data>
+
+<data name="X1_Display_Key"  ><value>X1</value> </data><data name="X1_Desc_Key"  ><value>X1</value></data>
+<data name="X2_Display_Key"  ><value>X2</value> </data><data name="X2_Desc_Key"  ><value>X2</value></data>
+<data name="X3_Display_Key"  ><value>X3</value> </data><data name="X3_Desc_Key"  ><value>X3</value></data>
+<data name="X4_Display_Key"  ><value>X4</value> </data><data name="X4_Desc_Key"  ><value>X4</value></data>
+<data name="X5_Display_Key"  ><value>X5</value> </data><data name="X5_Desc_Key"  ><value>X5</value></data>
+
+<data name="Y1_Display_Key"  ><value>Y1</value> </data><data name="Y1_Desc_Key"  ><value>Y1</value></data>
+<data name="Y2_Display_Key"  ><value>Y2</value> </data><data name="Y2_Desc_Key"  ><value>Y2</value></data>
+<data name="Y3_Display_Key"  ><value>Y3</value> </data><data name="Y3_Desc_Key"  ><value>Y3</value></data>
+<data name="Y4_Display_Key"  ><value>Y4</value> </data><data name="Y4_Desc_Key"  ><value>Y4</value></data>
+<data name="Y5_Display_Key"  ><value>Y5</value> </data><data name="Y5_Desc_Key"  ><value>Y5</value></data>
+
+<data name="W1_Display_Key"  ><value>W1</value> </data><data name="W1_Desc_Key"  ><value>W1</value></data>
+<data name="W2_Display_Key"  ><value>W2</value> </data><data name="W2_Desc_Key"  ><value>W2</value></data>
+<data name="W3_Display_Key"  ><value>W3</value> </data><data name="W3_Desc_Key"  ><value>W3</value></data>
+<data name="W4_Display_Key"  ><value>W4</value> </data><data name="W4_Desc_Key"  ><value>W4</value></data>
+<data name="W5_Display_Key"  ><value>W5</value> </data><data name="W5_Desc_Key"  ><value>W5</value></data>
+
+<data name="H1_Display_Key"  ><value>H1</value> </data><data name="H1_Desc_Key"  ><value>H1</value></data>
+<data name="H2_Display_Key"  ><value>H2</value> </data><data name="H2_Desc_Key"  ><value>H2</value></data>
+<data name="H3_Display_Key"  ><value>H3</value> </data><data name="H3_Desc_Key"  ><value>H3</value></data>
+<data name="H4_Display_Key"  ><value>H4</value> </data><data name="H4_Desc_Key"  ><value>H4</value></data>
+<data name="H5_Display_Key"  ><value>H5</value> </data><data name="H5_Desc_Key"  ><value>H5</value></data>
+</root>

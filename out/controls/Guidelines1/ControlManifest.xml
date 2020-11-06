@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest>
+  <control namespace="FlorianGrimm" constructor="Guidelines1" version="0.0.1" display-name-key="Guidelines1" description-key="Guidelines1 description" control-type="standard" api-version="1.2.3">
+    <property name="InX" display-name-key="InX_Display_Key" description-key="InX_Desc_Key" of-type="FP" usage="input" required="false"/>
+    <property name="InY" display-name-key="InY_Display_Key" description-key="InY_Desc_Key" of-type="FP" usage="input" required="false"/>
+    <property name="InW" display-name-key="InW_Display_Key" description-key="InW_Desc_Key" of-type="FP" usage="input" required="false"/>
+    <property name="InH" display-name-key="InH_Display_Key" description-key="InH_Desc_Key" of-type="FP" usage="input" required="false"/>
+    <property name="FxX1" display-name-key="FxX1_Display_Key" description-key="FxX1_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxX2" display-name-key="FxX2_Display_Key" description-key="FxX2_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxX3" display-name-key="FxX3_Display_Key" description-key="FxX3_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxX4" display-name-key="FxX4_Display_Key" description-key="FxX4_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxX5" display-name-key="FxX5_Display_Key" description-key="FxX5_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxY1" display-name-key="FxY1_Display_Key" description-key="FxY1_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxY2" display-name-key="FxY2_Display_Key" description-key="FxY2_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxY3" display-name-key="FxY3_Display_Key" description-key="FxY3_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxY4" display-name-key="FxY4_Display_Key" description-key="FxY4_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="FxY5" display-name-key="FxY5_Display_Key" description-key="FxY5_Desc_Key" of-type-group="numberOrText" usage="input" required="false"/>
+    <property name="X1" display-name-key="X1_Display_Key" description-key="X1_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="X2" display-name-key="X2_Display_Key" description-key="X2_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="X3" display-name-key="X3_Display_Key" description-key="X3_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="X4" display-name-key="X4_Display_Key" description-key="X4_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="X5" display-name-key="X5_Display_Key" description-key="X5_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="Y1" display-name-key="Y1_Display_Key" description-key="Y1_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="Y2" display-name-key="Y2_Display_Key" description-key="Y2_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="Y3" display-name-key="Y3_Display_Key" description-key="Y3_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="Y4" display-name-key="Y4_Display_Key" description-key="Y4_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="Y5" display-name-key="Y5_Display_Key" description-key="Y5_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="W1" display-name-key="W1_Display_Key" description-key="W1_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="W2" display-name-key="W2_Display_Key" description-key="W2_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="W3" display-name-key="W3_Display_Key" description-key="W3_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="W4" display-name-key="W4_Display_Key" description-key="W4_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="W5" display-name-key="W5_Display_Key" description-key="W5_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="H1" display-name-key="H1_Display_Key" description-key="H1_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="H2" display-name-key="H2_Display_Key" description-key="H2_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="H3" display-name-key="H3_Display_Key" description-key="H3_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="H4" display-name-key="H4_Display_Key" description-key="H4_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <property name="H5" display-name-key="H5_Display_Key" description-key="H5_Desc_Key" of-type="FP" usage="bound" required="false"/>
+    <type-group name="numberOrText">
+      <type>FP</type>
+      <type>SingleLine.Text</type>
+    </type-group>
+    <resources>
+      <code path="bundle.js" order="1"/>
+      <resx path="strings/Guidelines1.1033.resx" version="1.0.0"/>
+    </resources>
+    <built-by name="pac" version="1.3.6"/>
+  </control>
+</manifest>
