@@ -1,6 +1,9 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
 import {getHotRepository} from "../../shared/HotRepository";
 import {ControlName} from "../../shared/constants";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import GuildelinesView from "./GuildelinesView";
 
 (function(){
 	console && console.log && console.log("register", ControlName);
@@ -8,13 +11,13 @@ import {ControlName} from "../../shared/constants";
 })();
 
 export class Guidelines1 implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+	container: HTMLDivElement|null = null;
 
 	/**
 	 * Empty constructor.
 	 */
 	constructor()
 	{
-
 	}
 
 	/**
@@ -28,7 +31,9 @@ export class Guidelines1 implements ComponentFramework.StandardControl<IInputs, 
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
 		// Add control initialization code
-		container.innerText = "1 1";
+		this.container = container;
+		const props={};
+		ReactDOM.render(React.createElement(GuildelinesView, props), container)
 	}
 
 
@@ -57,5 +62,10 @@ export class Guidelines1 implements ComponentFramework.StandardControl<IInputs, 
 	public destroy(): void
 	{
 		// Add code to cleanup control if necessary
+		const container=this.container;
+		if (container){
+			this.container=null;
+			ReactDOM.unmountComponentAtNode(container)
+		}
 	}
 }
