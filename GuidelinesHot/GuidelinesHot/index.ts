@@ -16,6 +16,7 @@ export class GuidelinesHot implements ComponentFramework.StandardControl<IInputs
 		this.container = null;
 		this.socket = null;
 		this.sideLoadControlName = "";
+		console.log("GuidelinesHot 1.3.2");
 	}
 
 	logVisible(message?: any, ...optionalParams: any[]): void {
