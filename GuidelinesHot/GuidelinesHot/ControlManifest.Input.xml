@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="FlorianGrimm" constructor="GuidelinesHot" version="0.0.1" display-name-key="GuidelinesHot" description-key="GuidelinesHot description" control-type="standard">
+  <control namespace="FlorianGrimm" constructor="GuidelinesHot" version="1.1.2" display-name-key="GuidelinesHot" description-key="GuidelinesHot description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="SideLoadUrl" display-name-key="SideLoadUrl_Display_Key" description-key="SideLoadUrl_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="http://127.0.0.1:8182/bundle.js" />
+    <property name="SideLoadUrl" display-name-key="SideLoadUrl_Display_Key" description-key="SideLoadUrl_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="http://127.0.0.1:8181/bundle.js" />
     <property name="SideLoadControlName" display-name-key="SideLoadControlName_Display_Key" description-key="SideLoadControlName_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="default" />
 
     <property name="InX" display-name-key="InX_Display_Key" description-key="InX_Desc_Key" of-type="FP" usage="input" required="false" />
@@ -10,17 +10,17 @@
     <property name="InW" display-name-key="InW_Display_Key" description-key="InW_Desc_Key" of-type="FP" usage="input" required="false" />
     <property name="InH" display-name-key="InH_Display_Key" description-key="InH_Desc_Key" of-type="FP" usage="input" required="false" />
 
-    <property name="FxX1"  display-name-key="FxX1_Display_Key"  description-key="FxX1_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxX2"  display-name-key="FxX2_Display_Key"  description-key="FxX2_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxX3"  display-name-key="FxX3_Display_Key"  description-key="FxX3_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxX4"  display-name-key="FxX4_Display_Key"  description-key="FxX4_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxX5"  display-name-key="FxX5_Display_Key"  description-key="FxX5_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
+    <property name="FxX1"  display-name-key="FxX1_Display_Key"  description-key="FxX1_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxX2"  display-name-key="FxX2_Display_Key"  description-key="FxX2_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxX3"  display-name-key="FxX3_Display_Key"  description-key="FxX3_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxX4"  display-name-key="FxX4_Display_Key"  description-key="FxX4_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxX5"  display-name-key="FxX5_Display_Key"  description-key="FxX5_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
 
-    <property name="FxY1"  display-name-key="FxY1_Display_Key"  description-key="FxY1_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxY2"  display-name-key="FxY2_Display_Key"  description-key="FxY2_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxY3"  display-name-key="FxY3_Display_Key"  description-key="FxY3_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxY4"  display-name-key="FxY4_Display_Key"  description-key="FxY4_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
-    <property name="FxY5"  display-name-key="FxY5_Display_Key"  description-key="FxY5_Desc_Key" of-type-group="numberOrText" usage="input" required="false" />
+    <property name="FxY1"  display-name-key="FxY1_Display_Key"  description-key="FxY1_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxY2"  display-name-key="FxY2_Display_Key"  description-key="FxY2_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxY3"  display-name-key="FxY3_Display_Key"  description-key="FxY3_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxY4"  display-name-key="FxY4_Display_Key"  description-key="FxY4_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="FxY5"  display-name-key="FxY5_Display_Key"  description-key="FxY5_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
 
     <property name="X1"  display-name-key="X1_Display_Key"  description-key="X1_Desc_Key" of-type="FP" usage="bound" required="false" />
     <property name="X2"  display-name-key="X2_Display_Key"  description-key="X2_Desc_Key" of-type="FP" usage="bound" required="false" />
@@ -67,7 +67,7 @@
       <!-- UNCOMMENT TO ADD MORE RESOURCES
       <css path="css/GuidelinesHot.css" order="1" />
       -->
-      <resx path="strings/GuidelinesHot.1033.resx" version="1.0.0" />
+      <resx path="strings/GuidelinesControl.1033.resx" version="1.0.0" />
     </resources>
     <!-- UNCOMMENT TO ENABLE THE SPECIFIED API
     <feature-usage>

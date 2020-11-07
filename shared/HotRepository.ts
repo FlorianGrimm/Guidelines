@@ -9,16 +9,18 @@ export class HotRepository {
     public readonly _Items: ({ [name: string]: Creator });
     constructor() {
         this._Items = {};
-        this._Versions={};
+        this._Versions = {};
     }
 
-    register(name: string, version:number, c: Creator): void {
-        if ((this._Versions[name] || 0) <= version){
+    register(name: string, version: number, c: Creator): void {
+        const oldVersion = (this._Versions[name] || 0);
+        if (oldVersion <= version) {
             this._Versions[name] = version;
             this._Items[name] = c;
+            console && console.debug && console.debug(`HotRepository.register ${name} ${oldVersion} -> ${version}`);
         }
     }
-    
+
     get(name: string): Creator | null {
         return this._Items[name] || null;
     }

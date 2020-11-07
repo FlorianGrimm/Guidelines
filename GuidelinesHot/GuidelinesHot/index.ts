@@ -2,7 +2,7 @@ import { IInputs, IOutputs } from "./generated/ManifestTypes";
 import { getHotRepository } from "../../shared/HotRepository";
 
 import { ControlName } from "../../shared/constants";
-import { timeStamp } from "console";
+
 export class GuidelinesHot implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 	public impl: ComponentFramework.StandardControl<IInputs, IOutputs> | null;
 	logVisibleToContainer = true;
@@ -76,7 +76,7 @@ export class GuidelinesHot implements ComponentFramework.StandardControl<IInputs
 			return fetch(sideLoadUrl, { mode: "cors", cache: "no-cache" })
 				.then((response) => {
 					if (response.status == 200) {
-						this.logVisible(`Hot ${sideLoadUrl} download OK Status:${response.status}`);
+						//this.logVisible(`Hot ${sideLoadUrl} download OK Status:${response.status}`);
 						return response.text();
 					} else {
 						this.logVisible(`Hot ${sideLoadUrl} download ?? Status:${response.status}`);
@@ -87,7 +87,7 @@ export class GuidelinesHot implements ComponentFramework.StandardControl<IInputs
 					return "";
 				}).then(data => {
 					if (data) {
-						this.logVisible(`Hot ${sideLoadUrl} downloaded`);
+						//this.logVisible(`Hot ${sideLoadUrl} downloaded`);
 						window.localStorage.setItem(ControlName, data);
 						return data;
 					} else {

@@ -1,1 +1,2 @@
 export const ControlName="pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad.Guidelines";
+export const Control1Name="pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad.Guidelines1";

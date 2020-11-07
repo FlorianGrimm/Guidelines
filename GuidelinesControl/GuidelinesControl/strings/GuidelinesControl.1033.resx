@@ -43,11 +43,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 
-<data name="SideLoadUrl_Display_Key" ><value>SideLoadUrl</value></data>
-<data name="SideLoadUrl_Desc_Key" ><value>SideLoadUrl</value></data>
-<data name="SideLoadControlName_Display_Key" ><value>SideLoadControlName</value></data>
-<data name="SideLoadControlName_Desc_Key" ><value>Guidelines</value></data>
-
 <data name="InX_Display_Key" ><value>InX</value></data><data name="InX_Desc_Key" ><value>InX</value></data>
 <data name="InY_Display_Key" ><value>InY</value></data><data name="InY_Desc_Key" ><value>InY</value></data>
 <data name="InW_Display_Key" ><value>InW</value></data><data name="InW_Desc_Key" ><value>InW</value></data>
@@ -88,6 +83,4 @@
 <data name="H3_Display_Key"  ><value>H3</value> </data><data name="H3_Desc_Key"  ><value>H3</value></data>
 <data name="H4_Display_Key"  ><value>H4</value> </data><data name="H4_Desc_Key"  ><value>H4</value></data>
 <data name="H5_Display_Key"  ><value>H5</value> </data><data name="H5_Desc_Key"  ><value>H5</value></data>
-
-
 </root>

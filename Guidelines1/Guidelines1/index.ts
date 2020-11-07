@@ -1,9 +1,11 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
 import {getHotRepository} from "../../shared/HotRepository";
 import {ControlName} from "../../shared/constants";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+
 import GuildelinesView from "./GuildelinesView";
+
+import React = require("react");
+import ReactDOM = require("react-dom");
 
 (function(){
 	console && console.log && console.log("register", ControlName);

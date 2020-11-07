@@ -42,7 +42,8 @@
   <ItemGroup>
     <ProjectReference Include="GuidelinesHot\GuidelinesHot.pcfproj" />
     <!--
-    <ProjectReference Include="Guidelines1\Guidelines1.pcfproj" />
+    <ProjectReference Include="Guidelines1\GuidelinesControl1.pcfproj" />
+    <ProjectReference Include="Guidelines1\GuidelinesControl.pcfproj" />
     -->
   </ItemGroup>
 
