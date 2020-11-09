@@ -3,7 +3,7 @@ import { getHotRepository } from "../../shared/HotRepository";
 
 import { ControlName } from "../../shared/constants";
 
-export class GuidelinesHot implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+export default class GuidelinesHot implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 	public impl: ComponentFramework.StandardControl<IInputs, IOutputs> | null;
 	logVisibleToContainer = true;
 	container: HTMLDivElement | null;

@@ -1,9 +1,16 @@
-//import { IInputs, IOutputs } from "./generated/ManifestTypes";
+import { GuidelinesControl, featureAllowHotReload } from './GuidelinesControl';
 
-import { GuidelinesControl1 } from "../../GuidelinesControl1/GuidelinesControl1/index";
+// development enable HotReload
+/* */
+import { enableHotReload } from './HotControl';
+const control = (featureAllowHotReload)
+	? enableHotReload(GuidelinesControl, "http://127.0.0.1:8181/bundle.js")
+	: GuidelinesControl
+	;
+export { control as GuidelinesControl };
+/* */
 
-export class GuidelinesControl extends GuidelinesControl1 {
-	constructor() {
-		super();
-	}
-}
+// Production
+/*
+export { GuidelinesControl};
+*/
