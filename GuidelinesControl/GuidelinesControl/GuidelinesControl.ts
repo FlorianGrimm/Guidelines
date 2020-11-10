@@ -7,7 +7,9 @@ export class GuidelinesControl
 	static namespace = "FlorianGrimm";
 	static version = 7;
 
+	count :number;
 	constructor() {
+		this.count=1;
 	}
 
 	/**
@@ -21,13 +23,16 @@ export class GuidelinesControl
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement) {
 
 		// Add control initialization code
-		// this.hotControl?.init(context, notifyOutputChanged, state, container);
-		// this.realControl?.init(context, notifyOutputChanged, state, container);
-		container.innerText = "hello 14";
+		container.innerText = `hello 4 count ${this.count}`;
 	}
 
-	public hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement, hotReload?: boolean) {
-		container.innerText = "hello 14 reload";
+	public hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement, hotReloadState?: any) {
+		this.count=hotReloadState?.count || 0;
+		container.innerText = `hello 4 reload count ${this.count}`;
+	}
+
+	getHotReloadState?(): any{
+		return {count:this.count+1};
 	}
 
 	/**
@@ -36,8 +41,6 @@ export class GuidelinesControl
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
 		// Add code to update control view
-		// this.hotControl?.updateView(context);
-		// this.realControl?.updateView(context);
 	}
 
 	// /** 

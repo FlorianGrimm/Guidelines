@@ -14,8 +14,14 @@ export interface HotReloadHost<IInputs, IOutputs> extends ComponentFramework.Sta
      * @param notifyOutputChanged A callback method to alert the framework that the control has new outputs ready to be retrieved asynchronously.
      * @param state A piece of data that persists in one session for a single user. Can be set at any point in a controls life cycle by calling 'setControlState' in the Mode interface.
      * @param container If a control is marked control-type='standard', it will receive an empty div element within which it can render its content.
+     * @param hotReloadState the state from getHotReloadState
      */
-    hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged?: () => void, state?: ComponentFramework.Dictionary, container?: HTMLDivElement): void;
+    hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged?: () => void, state?: ComponentFramework.Dictionary, container?: HTMLDivElement, hotReloadState?:any): void;
+
+    /**
+     * Called before the control willbe destroyed and hotReload-ed.
+     */
+    getHotReloadState?(): any;
 }
 
 export interface HotReloadHostConstructor<IInputs = any, IOutputs = any> {
@@ -27,9 +33,8 @@ export interface HotReloadHostConstructor<IInputs = any, IOutputs = any> {
 
 
 function logVisible(url: string, message?: any, ...optionalParams: any[]): void {
-    if (consoleDebugEnabled && console && console.debug) {
-        console.debug(message, ...optionalParams);
-    }
+    consoleDebugEnabled && console.debug && console.debug(message, ...optionalParams);
+    
     // TODO
     /*
     if (this.container && this.logVisibleToContainer) {
@@ -73,6 +78,9 @@ function getOrAddByKey<K, V>(
     if (map.has(key)) {
         const result = map.get(key);
         if (result !== undefined) {
+            if (update){
+                update(key, result);
+            }
             return [false, result];
         }
     }
@@ -82,32 +90,7 @@ function getOrAddByKey<K, V>(
         return [true, result];
     }
 }
-function getOrAddByDerivedKey<DK, K, V>(
-    map: Map<K, V>,
-    dk: DK,
-    getKey: (dk: DK) => K,
-    factory: ((dk: DK, key: K) => V),
-    update?: ((dk: DK, key: K, value: V) => void)
-): [boolean, V] {
-    const key = getKey(dk);
-    if (map.has(key)) {
-        const result = map.get(key);
-        if (result !== undefined) {
-            if (update) { update(dk, key, result); }
-            return [false, result];
-        }
-    }
-    {
-        const result = factory(dk, key);
-        map.set(key, result);
-        return [true, result];
-    }
-}
-function getTypeFullName<IInputs = any, IOutputs = any>(type: HotReloadHostConstructor<IInputs, IOutputs>): string {
-    return `${type.namespace}.${type.name}`;
-}
 class HotRepositoryForUrl {
-
     reloadGuard: number;
     readonly url: string;
     readonly typesByExportName: Map<string, HotRepositoryForType>;
@@ -191,7 +174,6 @@ class HotRepositoryForUrl {
         return this.typesByExportName.get(name);
     }
 
-
     startWatch() {
         let socket = this.socket;
         if (socket === null) {
@@ -202,12 +184,11 @@ class HotRepositoryForUrl {
                 ? ((m.groups["protocol"] === "http:") ? "ws:" : "wss:") + m.groups["url"] + m.groups["port"] + "/ws"
                 : "";
             if (address) {
-                console.log("start socket", address)
+                consoleDebugEnabled && console.debug && console.debug("start socket", address)
                 socket = this.socket = new WebSocket(address);
                 socket.onmessage = (msg: MessageEvent) => {
                     if (msg.data == 'reload') {
                         this.fetchAndApply();
-                        //console.log && console.log('hot reload event received.');
                     }
                 };
                 socket.onclose = (ev: CloseEvent) => {
@@ -290,7 +271,6 @@ class HotRepositoryForType<IInputs = any, IOutputs = any> {
     wrappedType: HotReloadHostConstructor<IInputs, IOutputs>;
     name: string;
     namespace: string;
-    typeFullName: string;
     version: number;
 
     constructor(hotRepositoryForUrl: HotRepositoryForUrl, exportName: string, type: HotReloadHostConstructor<IInputs, IOutputs>) {
@@ -300,7 +280,6 @@ class HotRepositoryForType<IInputs = any, IOutputs = any> {
         this.name = type.name;
         this.namespace = type.namespace || "";
         this.version = type.version || 0;
-        this.typeFullName = getTypeFullName(type);
         this.wrappedType = this.generateHotReloadHostType(type);
     }
 
@@ -379,12 +358,10 @@ class HotRepository {
         moduleExports: Types
     ) {
         try {
-            // console.log("before", types)
             const hotRepositoryForUrl = this.registerTypes(url, types);
             hotRepositoryForUrl.enableHotReloadForTypes(types, moduleExports);
-            // console.log("after", moduleExports)
         } catch (err) {
-            console.error("enableHotReload", err);
+            console.error && console.error("enableHotReload", err);
         }
     }
 
@@ -502,12 +479,13 @@ class HotControl<IInputs = any, IOutputs = any> implements ComponentFramework.St
                     const type: HotReloadHostConstructor<IInputs, IOutputs> = (this.instance as any).constructor;
                     const { context, notifyOutputChanged, state } = this.info;
                     if (type && typeLatest && type !== typeLatest && context) {
+                        const hotReloadState=instance.getHotReloadState && instance.getHotReloadState();
                         this.destroy();
 
                         const nextInstance = new typeLatest();
                         const hotControl = new HotControl(nextInstance, this.hotRepositoryForType);
                         getHotRepository().addHotControl(hotControl);
-                        nextInstance.hotReload(context, notifyOutputChanged, state, container);
+                        nextInstance.hotReload(context, notifyOutputChanged, state, container, hotReloadState);
                     }
                     container.style.border = "";
                 }
