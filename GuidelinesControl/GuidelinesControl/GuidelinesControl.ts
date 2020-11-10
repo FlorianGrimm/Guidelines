@@ -1,18 +1,13 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
-import { enableHotReload, injectHotReload, HotReloadHost } from "./HotControl";
-
-export const featureAllowHotReload = true;
+import type { HotReloadHost } from "./HotReload";
 
 export class GuidelinesControl
 	implements ComponentFramework.StandardControl<IInputs, IOutputs>,
 	HotReloadHost<IInputs, IOutputs> {
 	static namespace = "FlorianGrimm";
-	static version = 4;
-	// hotControl: ComponentFramework.StandardControl<IInputs, IOutputs> | null;
-	// realControl: ComponentFramework.StandardControl<IInputs, IOutputs> | null;
+	static version = 7;
 
 	constructor() {
-		if (featureAllowHotReload) { injectHotReload(this); }
 	}
 
 	/**
@@ -28,11 +23,11 @@ export class GuidelinesControl
 		// Add control initialization code
 		// this.hotControl?.init(context, notifyOutputChanged, state, container);
 		// this.realControl?.init(context, notifyOutputChanged, state, container);
-		container.innerText = "hello 7";
+		container.innerText = "hello 14";
 	}
 
 	public hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement, hotReload?: boolean) {
-		container.innerText = "hello 7 reload";
+		container.innerText = "hello 14 reload";
 	}
 
 	/**
@@ -59,15 +54,5 @@ export class GuidelinesControl
 	 */
 	public destroy(): void {
 		// Add code to cleanup control if necessary
-		// this.realControl?.destroy();
-		// this.realControl = null;
-		// this.hotControl?.destroy();
-		// this.hotControl = null;
 	}
 }
-
-
-//enableHotReload("GuidelinesControl", 1, () => new GuidelinesControl(), "http://127.0.0.1:8181/bundle.js");
-// if (featureAllowHotReload) {
-// 	enableHotReload(GuidelinesControl, "http://127.0.0.1:8181/bundle.js");
-// }

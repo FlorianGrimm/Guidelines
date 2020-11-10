@@ -5,6 +5,8 @@ Currently a test for PCF Control
 *Alpha version do not use*!!
 
 ```
+pac install latest
+
 mkdir Guidelines
 cd Guidelines
 pac solution init --publisher-name FlorianGrimm --publisher-prefix fgr

@@ -40,11 +40,15 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="GuidelinesHot\GuidelinesHot.pcfproj" />
     <!--
+    <ProjectReference Include="GuidelinesHot\GuidelinesHot.pcfproj" />
     <ProjectReference Include="Guidelines1\GuidelinesControl1.pcfproj" />
-    <ProjectReference Include="Guidelines1\GuidelinesControl.pcfproj" />
+    <ProjectReference Include="GuidelinesControl\GuidelinesControl.pcfproj" />
     -->
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="GuidelinesControl\GuidelinesControl.pcfproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
