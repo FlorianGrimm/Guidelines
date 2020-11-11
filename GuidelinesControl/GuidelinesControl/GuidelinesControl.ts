@@ -1,5 +1,12 @@
+import React = require("react");
+import ReactDOM = require("react-dom");
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
+import GuidelinesControlView, { GuidelinesControlViewProps } from "./GuidelinesControlView";
 import type { HotReloadHost } from "./HotReload";
+import { SingleTriggerEvent } from "./triggerEvent";
+import { ControlSize, TriggerUpdateControlSize } from "./triggerSizeChanged";
+import { TriggerUpdateViewHost } from "./triggerUpdateView";
+
 
 export class GuidelinesControl
 	implements ComponentFramework.StandardControl<IInputs, IOutputs>,
@@ -7,9 +14,21 @@ export class GuidelinesControl
 	static namespace = "FlorianGrimm";
 	static version = 7;
 
-	count :number;
+	notifyOutputChanged: (() => void) | null;
+	state: ComponentFramework.Dictionary | null;
+	container: HTMLDivElement | null;
+	context: ComponentFramework.Context<IInputs> | null;
+	triggers: TriggerUpdateViewHost & TriggerUpdateControlSize;
+
 	constructor() {
-		this.count=1;
+		this.notifyOutputChanged = null;
+		this.state = null;
+		this.container = null;
+		this.context = null;
+		this.triggers = {
+			triggerUpdateView: new SingleTriggerEvent<any, any>(),
+			triggerUpdateSize: new SingleTriggerEvent<any, ControlSize>();
+		};
 	}
 
 	/**
@@ -21,18 +40,11 @@ export class GuidelinesControl
 	 * @param container If a control is marked control-type='standard', it will receive an empty div element within which it can render its content.
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement) {
-
-		// Add control initialization code
-		container.innerText = `hello 4 count ${this.count}`;
-	}
-
-	public hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement, hotReloadState?: any) {
-		this.count=hotReloadState?.count || 0;
-		container.innerText = `hello 4 reload count ${this.count}`;
-	}
-
-	getHotReloadState?(): any{
-		return {count:this.count+1};
+		this.notifyOutputChanged = notifyOutputChanged || null;
+		this.state = state || null;
+		this.container = container || null;
+		this.updateContext(context, "init");
+		this.startReact();
 	}
 
 	/**
@@ -40,22 +52,109 @@ export class GuidelinesControl
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
-		// Add code to update control view
+		this.updateContext(context, "updateView");
 	}
 
-	// /** 
-	//  * It is called by the framework prior to a control receiving new data. 
-	//  * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
-	//  */
-	// public getOutputs(): IOutputs {
-	// 	return {};
-	// }
+	/** 
+	 * It is called by the framework prior to a control receiving new data. 
+	 * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
+	 */
+	public getOutputs(): IOutputs {
+		return {};
+	}
 
 	/** 
 	 * Called when the control is to be removed from the DOM tree. Controls should use this call for cleanup.
 	 * i.e. cancelling any pending remote calls, removing listeners, etc.
 	 */
 	public destroy(): void {
-		// Add code to cleanup control if necessary
+		this.triggers.triggerUpdateView.clear();
+		//
+		const container = this.container;
+		if (container) {
+			this.container = null;
+			ReactDOM.unmountComponentAtNode(container);
+		}
+	}
+
+	startReact() {
+		const container = this.container;
+		if (container) {
+			const props: GuidelinesControlViewProps = {
+				getHost: () => this.triggers
+			};
+			ReactDOM.render(React.createElement(GuidelinesControlView, props), container);
+		}
+	}
+
+	updateContext(context: ComponentFramework.Context<IInputs>, mode: "init" | "updateView" | "hotReload") {
+		this.context = context;
+		const resumeUpdateView = this.triggers.triggerUpdateView.pause();
+		try {
+			const isInit = mode === "init" || mode === "hotReload"
+			const isUpdateView = mode === "updateView"
+			const isReload = mode === "hotReload"
+
+			//const x=context.
+			if (isInit || isReload) {
+				context.mode.trackContainerResize(true);
+			}
+
+
+			let updatedProperties: string[] = [];
+			updatedProperties.push(...context.updatedProperties);
+			const nextSteps: UpdateContextNextSteps = { updateView:false,layoutChanged: false, parametersChanged: false, entityIdChanged: false, datasetChanged: [] as string[] };
+			const wasEmpty = (!updatedProperties || updatedProperties.length === 0);
+			const dctUpdatedProperties: UpdateContextUpdatedProperties = {};
+			updatedProperties.forEach((p) => { dctUpdatedProperties[p] = true; });
+			if (dctUpdatedProperties["layout"] || wasEmpty || caller == "init") {
+				dctUpdatedProperties["layout"] = false;
+				nextSteps.layoutChanged = true;
+			}
+			if (dctUpdatedProperties["viewportSizeMode"]) {
+				dctUpdatedProperties["viewportSizeMode"] = false;
+				nextSteps.layoutChanged = true;
+			}
+			if (dctUpdatedProperties["parameters"] || wasEmpty || caller == "init") {
+				dctUpdatedProperties["parameters"] = false;
+				nextSteps.parametersChanged = true;
+			}
+			if (dctUpdatedProperties["entityId"]) {
+				dctUpdatedProperties["entityId"] = false;
+				nextSteps.entityIdChanged = true;
+			}
+			if (dctUpdatedProperties["fullscreen_open"]) {
+				dctUpdatedProperties["fullscreen_open"] = false;
+				nextSteps.layoutChanged = true;
+			}
+			if (dctUpdatedProperties["fullscreen_close"]) {
+				dctUpdatedProperties["fullscreen_close"] = false;
+				nextSteps.layoutChanged = true;
+			}
+			if (dctUpdatedProperties["IsControlDisabled"]) {
+				dctUpdatedProperties["IsControlDisabled"] = false;
+				nextSteps.layoutChanged = true;
+			}
+			// this.updateContextNextSteps(caller, dctUpdatedProperties, nextSteps);
+			// this.updateContextExecute(caller, dctUpdatedProperties, nextSteps);
+
+
+			this.triggers.triggerUpdateView.trigger(this, {});
+		} finally {
+			resumeUpdateView();
+		}
+
+	}
+
+	getHotReloadState?(): any {
+		return {};
+	}
+
+	public hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement, hotReloadState?: any) {
+		this.notifyOutputChanged = notifyOutputChanged;
+		this.state = state;
+		this.container = container;
+		this.updateContext(context, "hotReload");
+		this.startReact();
 	}
 }

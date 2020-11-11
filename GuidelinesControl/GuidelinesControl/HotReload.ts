@@ -16,12 +16,12 @@ export interface HotReloadHost<IInputs, IOutputs> extends ComponentFramework.Sta
      * @param container If a control is marked control-type='standard', it will receive an empty div element within which it can render its content.
      * @param hotReloadState the state from getHotReloadState
      */
-    hotReload(context: ComponentFramework.Context<IInputs>, notifyOutputChanged?: () => void, state?: ComponentFramework.Dictionary, container?: HTMLDivElement, hotReloadState?:any): void;
+    hotReload<T = any>(context: ComponentFramework.Context<IInputs>, notifyOutputChanged?: () => void, state?: ComponentFramework.Dictionary, container?: HTMLDivElement, hotReloadState?: T): void;
 
     /**
      * Called before the control willbe destroyed and hotReload-ed.
      */
-    getHotReloadState?(): any;
+    getHotReloadState?<T = any>(): T;
 }
 
 export interface HotReloadHostConstructor<IInputs = any, IOutputs = any> {
@@ -34,7 +34,7 @@ export interface HotReloadHostConstructor<IInputs = any, IOutputs = any> {
 
 function logVisible(url: string, message?: any, ...optionalParams: any[]): void {
     consoleDebugEnabled && console.debug && console.debug(message, ...optionalParams);
-    
+
     // TODO
     /*
     if (this.container && this.logVisibleToContainer) {
@@ -78,7 +78,7 @@ function getOrAddByKey<K, V>(
     if (map.has(key)) {
         const result = map.get(key);
         if (result !== undefined) {
-            if (update){
+            if (update) {
                 update(key, result);
             }
             return [false, result];
@@ -201,7 +201,7 @@ class HotRepositoryForUrl {
             }
         }
     }
-    fetchAndApply(){
+    fetchAndApply() {
         getHotRepository().foreachHotControl((hotControl) => { hotControl.notification({ event: "hotReload", url: this.url }) });
         this.fetchBundle().then((jsData) => {
             console.log && console.log('hot reload bundle fetched.');
@@ -229,10 +229,10 @@ class HotRepositoryForUrl {
                     const keyLocalStorage = `${keyLocalStoragePrefix}${this.url}`;
                     let oldData = "";
                     try {
-                        oldData = window.localStorage.getItem(keyLocalStorage)||"";
+                        oldData = window.localStorage.getItem(keyLocalStorage) || "";
                     } catch (error) {
                     }
-                    if (oldData == data){
+                    if (oldData == data) {
                         return "";
                     } else {
                         window.localStorage.setItem(keyLocalStorage, data);
@@ -479,7 +479,7 @@ class HotControl<IInputs = any, IOutputs = any> implements ComponentFramework.St
                     const type: HotReloadHostConstructor<IInputs, IOutputs> = (this.instance as any).constructor;
                     const { context, notifyOutputChanged, state } = this.info;
                     if (type && typeLatest && type !== typeLatest && context) {
-                        const hotReloadState=instance.getHotReloadState && instance.getHotReloadState();
+                        const hotReloadState = instance.getHotReloadState && instance.getHotReloadState();
                         this.destroy();
 
                         const nextInstance = new typeLatest();
