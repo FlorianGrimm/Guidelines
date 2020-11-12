@@ -1,10 +1,6 @@
-//import {IInputs, IOutputs} from "./generated/ManifestTypes";
+import logger from "./logger";
 
-import { type } from "os";
-
-//type IInputs=any;type IOutputs=any;
-const consoleDebugEnabled = true;
-
+// const consoleDebugEnabled = false;
 
 export interface HotReloadHost<IInputs, IOutputs> extends ComponentFramework.StandardControl<IInputs, IOutputs> {
     /**
@@ -33,7 +29,7 @@ export interface HotReloadHostConstructor<IInputs = any, IOutputs = any> {
 
 
 function logVisible(url: string, message?: any, ...optionalParams: any[]): void {
-    consoleDebugEnabled && console.debug && console.debug(message, ...optionalParams);
+    logger.debug(message, ...optionalParams);
 
     // TODO
     /*
@@ -61,11 +57,27 @@ const keyLocalStoragePrefix = "HotReload";
 
 type HotReloadHostConstructorDictionary = { [name: string]: HotReloadHostConstructor };
 export function enableHotReloadForTypes<Types extends HotReloadHostConstructorDictionary>(
-    url: string,
+    name: string,
     types: Types,
-    moduleExports: Types
+    moduleExports: any
 ) {
-    getHotRepository().enableHotReloadForTypes(url, types, moduleExports);
+    const keyEnabled = `${keyLocalStoragePrefix}#${name}#enabled`;
+    const keyUrl = `${keyLocalStoragePrefix}#${name}#Url`;
+    /*
+    console.log("Keys", keyEnabled, keyUrl);
+    window.localStorage.setItem("HotReload#GuidelinesControl#enabled", "On");
+    window.localStorage.setItem("HotReload#GuidelinesControl#Url", "http://127.0.0.1:8181/bundle.js");
+    */
+    const isEnabled = window.localStorage.getItem(keyEnabled) === "On";
+    const url = (isEnabled) ? window.localStorage.getItem(keyUrl) : null;
+    if (url) {
+        getHotRepository().enableHotReloadForTypes(url, types, moduleExports);
+    } else {
+        Object.defineProperty(moduleExports, "__esModule", { value: true });
+        for (const key in types) {
+            Object.defineProperty(moduleExports, key, { enumerable: true, value: (types as any)[key] });
+        }
+    }
 }
 
 
@@ -121,7 +133,7 @@ class HotRepositoryForUrl {
         moduleExports: Types
     ) {
         if (this.reloadGuard === 0) {
-            consoleDebugEnabled && console.debug && console.debug("enableHotReload within normal load.", this.url, Object.keys(types));
+            logger.debug("enableHotReload within normal load.", this.url, Object.keys(types));
             if (this.url) {
                 try {
                     const jsTxt = this.getFromLocalStorage();
@@ -184,7 +196,7 @@ class HotRepositoryForUrl {
                 ? ((m.groups["protocol"] === "http:") ? "ws:" : "wss:") + m.groups["url"] + m.groups["port"] + "/ws"
                 : "";
             if (address) {
-                consoleDebugEnabled && console.debug && console.debug("start socket", address)
+                logger.debug("start socket", address)
                 socket = this.socket = new WebSocket(address);
                 socket.onmessage = (msg: MessageEvent) => {
                     if (msg.data == 'reload') {
@@ -204,7 +216,7 @@ class HotRepositoryForUrl {
     fetchAndApply() {
         getHotRepository().foreachHotControl((hotControl) => { hotControl.notification({ event: "hotReload", url: this.url }) });
         this.fetchBundle().then((jsData) => {
-            console.log && console.log('hot reload bundle fetched.');
+            logger.log('hot reload bundle fetched.');
             if (this.evaluateBundleHotReload(jsData)) {
                 getHotRepository().foreachHotControl((hotControl) => { hotControl.notification({ event: "hotReloaded", url: this.url }) });
             }
@@ -214,18 +226,18 @@ class HotRepositoryForUrl {
         return fetch(this.url, { mode: "cors", cache: "no-cache" })
             .then((response) => {
                 if (response.status == 200) {
-                    //this.logVisible(`Hot ${sideLoadUrl} download OK Status:${response.status}`);
+                    logger.debug(`Hot ${this.url} download OK Status:${response.status}`);
                     return response.text();
                 } else {
-                    logVisible(this.url, `Hot ${this.url} download ?? Status:${response.status}`);
+                    logger.debug(`Hot ${this.url} download ?? Status:${response.status}`);
                     return "";
                 }
             }, (reason) => {
-                logVisible(this.url, `Hot ${this.url} Error: ${reason}`);
+                logger.debug(`Hot ${this.url} Error: ${reason}`);
                 return "";
             }).then(data => {
                 if (data) {
-                    //this.logVisible(`Hot ${sideLoadUrl} downloaded`);
+                    logger.debug(`Hot ${this.url} downloaded`);
                     const keyLocalStorage = `${keyLocalStoragePrefix}${this.url}`;
                     let oldData = "";
                     try {
@@ -239,7 +251,7 @@ class HotRepositoryForUrl {
                         return data;
                     }
                 } else {
-                    logVisible(this.url, `Hot ${this.url} downloaded no data`);
+                    logger.debug(`Hot ${this.url} downloaded no data.`);
                     return "";
                 }
             });
@@ -248,12 +260,12 @@ class HotRepositoryForUrl {
         if (jsData) {
             this.guardReloadBundle(0, 1, () => {
                 try {
-                    consoleDebugEnabled && console.debug && console.debug("hot reload evaluateBundleHotReload enter");
+                    logger.debug(`Hot reload ${this.url} evaluateBundleHotReload enter.`);
                     // the new bundle.js is evaluated now
                     (new Function(jsData))();
-                    consoleDebugEnabled && console.debug && console.debug("hot reload evaluateBundleHotReload exit");
+                    logger.debug(`Hot reload ${this.url} evaluateBundleHotReload exit.`);
                 } catch (error) {
-                    console.error("hot reload evaluateBundleHotReload error", this.url, error);
+                    logger.error(`Hot reload ${this.url} evaluateBundleHotReload error.`, error);
                     return;
                 }
             });
@@ -268,6 +280,7 @@ class HotRepositoryForType<IInputs = any, IOutputs = any> {
     hotRepositoryForUrl: HotRepositoryForUrl;
     exportName: string;
     type: HotReloadHostConstructor<IInputs, IOutputs>;
+    usedWrappedType: HotReloadHostConstructor<IInputs, IOutputs>;
     wrappedType: HotReloadHostConstructor<IInputs, IOutputs>;
     name: string;
     namespace: string;
@@ -281,6 +294,7 @@ class HotRepositoryForType<IInputs = any, IOutputs = any> {
         this.namespace = type.namespace || "";
         this.version = type.version || 0;
         this.wrappedType = this.generateHotReloadHostType(type);
+        this.usedWrappedType = type;
     }
 
     update(nextType: HotReloadHostConstructor<IInputs, IOutputs>): HotReloadHostConstructor<IInputs, IOutputs> {
@@ -314,6 +328,17 @@ class HotRepositoryForType<IInputs = any, IOutputs = any> {
         return result as HotReloadHostConstructor<IInputs, IOutputs>;
     }
 
+    getWrappedType(): HotReloadHostConstructor<IInputs, IOutputs> {
+        if (this.usedWrappedType !== this.type) {
+            const wrappedType = this.generateHotReloadHostType(this.type);
+            this.usedWrappedType = this.type;
+            this.wrappedType = wrappedType;
+            return wrappedType;
+        } else {
+            return this.wrappedType;
+        }
+    }
+
     setModuleExport<IInputs, IOutputs>(
         moduleExports: object,
         type: HotReloadHostConstructor<IInputs, IOutputs>
@@ -323,7 +348,7 @@ class HotRepositoryForType<IInputs = any, IOutputs = any> {
         Object.defineProperty(moduleExports, this.exportName, {
             enumerable: true,
             get: function get() {
-                return hotRepositoryForType.wrappedType;
+                return  hotRepositoryForType.getWrappedType();
             }
         });
     }
@@ -361,7 +386,7 @@ class HotRepository {
             const hotRepositoryForUrl = this.registerTypes(url, types);
             hotRepositoryForUrl.enableHotReloadForTypes(types, moduleExports);
         } catch (err) {
-            console.error && console.error("enableHotReload", err);
+            logger.error("enableHotReload", err);
         }
     }
 
@@ -389,7 +414,7 @@ class HotRepository {
                 try {
                     action(hotControl);
                 } catch (error) {
-                    console.error && console.error(error)
+                    logger.error(error)
                 }
             }
             if (remove) {
@@ -465,7 +490,7 @@ class HotControl<IInputs = any, IOutputs = any> implements ComponentFramework.St
     ) {
         const url = this.hotRepositoryForType.hotRepositoryForUrl.url;
         const container = this.info.container;
-        consoleDebugEnabled && console.debug && console.debug("notification", arg.event, arg.url, url);
+        logger.debug("notification", arg.event, arg.url, url);
         if (container && arg.event === "hotReload" && arg.url === url) {
             container.style.border = "1px solid yellow";
             return;
@@ -490,7 +515,7 @@ class HotControl<IInputs = any, IOutputs = any> implements ComponentFramework.St
                     container.style.border = "";
                 }
             } catch (error) {
-                console.error && console.error("hot reload failed", error);
+                logger.error("hot reload failed", error);
             }
         }
     }

@@ -73,3 +73,40 @@ msbuild /t:rebuild /p:configuration=Debug
 msbuild /t:build /restore
 msbuild /t:rebuild /p:configuration=Release
 ```
+
+#hacks
+```
+enalbe logging
+window.localStorage.setItem('GuidelinesControl#Logger', '{enableDebug:true, enableLog:true, enableError:true}')
+
+window.localStorage.setItem("HotReload#GuidelinesControl#enabled", "On");
+window.localStorage.setItem("HotReload#GuidelinesControl#Url", "http://127.0.0.1:8181/bundle.js");
+
+window.localStorage.setItem("HotReload#GuidelinesControl#enabled", "Off");
+window.localStorage.setItem("HotReload#GuidelinesControl#Url", "http://127.0.0.1:8181/bundle.js");
+```
+
+node_modules\pcf-scripts\webpackConfig.js
+```
+    const oobConfig = {
+        // `production` mode will minify, while `development` will optimize for debugging.
+        mode: buildMode,
+        devtool:"inline-source-map",
+        watch: watchFlag,
+```
+
+```
+    const oobConfig = {
+        // `production` mode will minify, while `development` will optimize for debugging.
+        mode: "production",
+        watch: watchFlag,
+```
+
+```
+    const isRelease = true;
+    const oobConfig = {
+        // `production` mode will minify, while `development` will optimize for debugging.
+        mode: (isRelease)?"production":buildMode,
+        devtool: (isRelease)?undefined:"inline-source-map",
+        watch: watchFlag,
+```

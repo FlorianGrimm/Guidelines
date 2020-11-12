@@ -1,11 +1,12 @@
 import * as React from "react";
+import logger from "./logger";
 import { ITriggerEvent, Unsubscripe } from "./triggerEvent";
 
-export interface TriggerUpdateViewHost {
-    triggerUpdateView: ITriggerEvent<any,any>;
+export type TriggerUpdateViewHost = {
+    triggerUpdateView: ITriggerEvent<any>;
 }
 export type TriggerUpdateViewProps = {
-    getHost: (()=>TriggerUpdateViewHost);
+    getTriggers: (()=>TriggerUpdateViewHost);
 }
 export type TriggerUpdateViewState = {
     tick: number;
@@ -23,10 +24,11 @@ export function wireTriggerUpdateView<P extends TriggerUpdateViewProps, S extend
     const triggerUpdateView = () => {
         const thisTick = that.tick;
         const stateTick = that.state.tick;
+        logger.log("triggerUpdateView", thisTick, stateTick);
         if (thisTick == stateTick) {
             that.tick = 0;
             that.setState({ tick: stateTick + 1 });
         }
     };
-    return props.getHost().triggerUpdateView.subscripe(triggerUpdateView);
+    return props.getTriggers().triggerUpdateView.subscripe(triggerUpdateView);
 } 

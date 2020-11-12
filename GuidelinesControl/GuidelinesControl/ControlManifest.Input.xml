@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="FlorianGrimm" constructor="GuidelinesControl" version="1.1.1" display-name-key="GuidelinesControl" description-key="GuidelinesControl description" control-type="standard">
-        <type-group name="numberOrText">
+  <control namespace="FlorianGrimm" constructor="GuidelinesControl" version="1.5.4" display-name-key="GuidelinesControl" description-key="GuidelinesControl description" control-type="standard">
+    <type-group name="numberOrText">
       <type>FP</type>
       <type>SingleLine.Text</type>
     </type-group>
@@ -36,29 +36,29 @@
     <property name="FxY4"  display-name-key="FxY4_Display_Key"  description-key="FxY4_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="FxY5"  display-name-key="FxY5_Display_Key"  description-key="FxY5_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
 
-    <property name="X1" display-name-key="X1_Display_Key" description-key="X1_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="X2" display-name-key="X2_Display_Key" description-key="X2_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="X3" display-name-key="X3_Display_Key" description-key="X3_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="X4" display-name-key="X4_Display_Key" description-key="X4_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="X5" display-name-key="X5_Display_Key" description-key="X5_Desc_Key" of-type="FP" usage="bound" required="false" />
+    <property name="X1" display-name-key="X1_Display_Key" description-key="X1_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="X2" display-name-key="X2_Display_Key" description-key="X2_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="X3" display-name-key="X3_Display_Key" description-key="X3_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="X4" display-name-key="X4_Display_Key" description-key="X4_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="X5" display-name-key="X5_Display_Key" description-key="X5_Desc_Key" of-type="FP" usage="output" required="false" />
 
-    <property name="Y1" display-name-key="Y1_Display_Key" description-key="Y1_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="Y2" display-name-key="Y2_Display_Key" description-key="Y2_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="Y3" display-name-key="Y3_Display_Key" description-key="Y3_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="Y4" display-name-key="Y4_Display_Key" description-key="Y4_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="Y5" display-name-key="Y5_Display_Key" description-key="Y5_Desc_Key" of-type="FP" usage="bound" required="false" />
+    <property name="Y1" display-name-key="Y1_Display_Key" description-key="Y1_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="Y2" display-name-key="Y2_Display_Key" description-key="Y2_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="Y3" display-name-key="Y3_Display_Key" description-key="Y3_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="Y4" display-name-key="Y4_Display_Key" description-key="Y4_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="Y5" display-name-key="Y5_Display_Key" description-key="Y5_Desc_Key" of-type="FP" usage="output" required="false" />
 
-    <property name="W1" display-name-key="W1_Display_Key" description-key="W1_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="W2" display-name-key="W2_Display_Key" description-key="W2_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="W3" display-name-key="W3_Display_Key" description-key="W3_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="W4" display-name-key="W4_Display_Key" description-key="W4_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="W5" display-name-key="W5_Display_Key" description-key="W5_Desc_Key" of-type="FP" usage="bound" required="false" />
+    <property name="W1" display-name-key="W1_Display_Key" description-key="W1_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="W2" display-name-key="W2_Display_Key" description-key="W2_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="W3" display-name-key="W3_Display_Key" description-key="W3_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="W4" display-name-key="W4_Display_Key" description-key="W4_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="W5" display-name-key="W5_Display_Key" description-key="W5_Desc_Key" of-type="FP" usage="output" required="false" />
 
-    <property name="H1" display-name-key="H1_Display_Key" description-key="H1_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="H2" display-name-key="H2_Display_Key" description-key="H2_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="H3" display-name-key="H3_Display_Key" description-key="H3_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="H4" display-name-key="H4_Display_Key" description-key="H4_Desc_Key" of-type="FP" usage="bound" required="false" />
-    <property name="H5" display-name-key="H5_Display_Key" description-key="H5_Desc_Key" of-type="FP" usage="bound" required="false" />
+    <property name="H1" display-name-key="H1_Display_Key" description-key="H1_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="H2" display-name-key="H2_Display_Key" description-key="H2_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="H3" display-name-key="H3_Display_Key" description-key="H3_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="H4" display-name-key="H4_Display_Key" description-key="H4_Desc_Key" of-type="FP" usage="output" required="false" />
+    <property name="H5" display-name-key="H5_Display_Key" description-key="H5_Desc_Key" of-type="FP" usage="output" required="false" />
 
     <resources>
       <code path="index.ts" order="1"/>

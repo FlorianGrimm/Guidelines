@@ -48,29 +48,29 @@
 <data name="InW_Display_Key" ><value>InW</value></data><data name="InW_Desc_Key" ><value>InW</value></data>
 <data name="InH_Display_Key" ><value>InH</value></data><data name="InH_Desc_Key" ><value>InH</value></data>
 
-<data name="FxX1_Display_Key"  ><value>Fx X1</value> </data><data name="Fx X1_Desc_Key"  ><value>Calc X1</value></data>
-<data name="FxX2_Display_Key"  ><value>Fx X2</value> </data><data name="Fx X2_Desc_Key"  ><value>Calc X2</value></data>
-<data name="FxX3_Display_Key"  ><value>Fx X3</value> </data><data name="Fx X3_Desc_Key"  ><value>Calc X3</value></data>
-<data name="FxX4_Display_Key"  ><value>Fx X4</value> </data><data name="Fx X4_Desc_Key"  ><value>Calc X4</value></data>
-<data name="FxX5_Display_Key"  ><value>Fx X5</value> </data><data name="Fx X5_Desc_Key"  ><value>Calc X5</value></data>
+<data name="FxX1_Display_Key"  ><value>Fx X1</value> </data><data name="FxX1_Desc_Key"  ><value>Calc X1 : Format number% +|- number.</value></data>
+<data name="FxX2_Display_Key"  ><value>Fx X2</value> </data><data name="FxX2_Desc_Key"  ><value>Calc X2 : Format number% +|- number.</value></data>
+<data name="FxX3_Display_Key"  ><value>Fx X3</value> </data><data name="FxX3_Desc_Key"  ><value>Calc X3 : Format number% +|- number.</value></data>
+<data name="FxX4_Display_Key"  ><value>Fx X4</value> </data><data name="FxX4_Desc_Key"  ><value>Calc X4 : Format number% +|- number.</value></data>
+<data name="FxX5_Display_Key"  ><value>Fx X5</value> </data><data name="FxX5_Desc_Key"  ><value>Calc X5 : Format number% +|- number.</value></data>
 
-<data name="FxY1_Display_Key"  ><value>Fx Y1</value> </data><data name="Fx Y1_Desc_Key"  ><value>Calc Y1</value></data>
-<data name="FxY2_Display_Key"  ><value>Fx Y2</value> </data><data name="Fx Y2_Desc_Key"  ><value>Calc Y2</value></data>
-<data name="FxY3_Display_Key"  ><value>Fx Y3</value> </data><data name="Fx Y3_Desc_Key"  ><value>Calc Y3</value></data>
-<data name="FxY4_Display_Key"  ><value>Fx Y4</value> </data><data name="Fx Y4_Desc_Key"  ><value>Calc Y4</value></data>
-<data name="FxY5_Display_Key"  ><value>Fx Y5</value> </data><data name="Fx Y5_Desc_Key"  ><value>Calc Y5</value></data>
+<data name="FxY1_Display_Key"  ><value>Fx Y1</value> </data><data name="FxY1_Desc_Key"  ><value>Calc Y1 : Format number% +|- number.</value></data>
+<data name="FxY2_Display_Key"  ><value>Fx Y2</value> </data><data name="FxY2_Desc_Key"  ><value>Calc Y2 : Format number% +|- number.</value></data>
+<data name="FxY3_Display_Key"  ><value>Fx Y3</value> </data><data name="FxY3_Desc_Key"  ><value>Calc Y3 : Format number% +|- number.</value></data>
+<data name="FxY4_Display_Key"  ><value>Fx Y4</value> </data><data name="FxY4_Desc_Key"  ><value>Calc Y4 : Format number% +|- number.</value></data>
+<data name="FxY5_Display_Key"  ><value>Fx Y5</value> </data><data name="FxY5_Desc_Key"  ><value>Calc Y5 : Format number% +|- number.</value></data>
 
-<data name="X1_Display_Key"  ><value>X1</value> </data><data name="X1_Desc_Key"  ><value>X1</value></data>
-<data name="X2_Display_Key"  ><value>X2</value> </data><data name="X2_Desc_Key"  ><value>X2</value></data>
-<data name="X3_Display_Key"  ><value>X3</value> </data><data name="X3_Desc_Key"  ><value>X3</value></data>
-<data name="X4_Display_Key"  ><value>X4</value> </data><data name="X4_Desc_Key"  ><value>X4</value></data>
-<data name="X5_Display_Key"  ><value>X5</value> </data><data name="X5_Desc_Key"  ><value>X5</value></data>
+<data name="X1_Display_Key"  ><value>X1</value> </data><data name="X1_Desc_Key"  ><value>X1 : Format number% +|- number.</value></data>
+<data name="X2_Display_Key"  ><value>X2</value> </data><data name="X2_Desc_Key"  ><value>X2 : Format number% +|- number.</value></data>
+<data name="X3_Display_Key"  ><value>X3</value> </data><data name="X3_Desc_Key"  ><value>X3 : Format number% +|- number.</value></data>
+<data name="X4_Display_Key"  ><value>X4</value> </data><data name="X4_Desc_Key"  ><value>X4 : Format number% +|- number.</value></data>
+<data name="X5_Display_Key"  ><value>X5</value> </data><data name="X5_Desc_Key"  ><value>X5 : Format number% +|- number.</value></data>
 
-<data name="Y1_Display_Key"  ><value>Y1</value> </data><data name="Y1_Desc_Key"  ><value>Y1</value></data>
-<data name="Y2_Display_Key"  ><value>Y2</value> </data><data name="Y2_Desc_Key"  ><value>Y2</value></data>
-<data name="Y3_Display_Key"  ><value>Y3</value> </data><data name="Y3_Desc_Key"  ><value>Y3</value></data>
-<data name="Y4_Display_Key"  ><value>Y4</value> </data><data name="Y4_Desc_Key"  ><value>Y4</value></data>
-<data name="Y5_Display_Key"  ><value>Y5</value> </data><data name="Y5_Desc_Key"  ><value>Y5</value></data>
+<data name="Y1_Display_Key"  ><value>Y1</value> </data><data name="Y1_Desc_Key"  ><value>Y1 : Format number% +|- number.</value></data>
+<data name="Y2_Display_Key"  ><value>Y2</value> </data><data name="Y2_Desc_Key"  ><value>Y2 : Format number% +|- number.</value></data>
+<data name="Y3_Display_Key"  ><value>Y3</value> </data><data name="Y3_Desc_Key"  ><value>Y3 : Format number% +|- number.</value></data>
+<data name="Y4_Display_Key"  ><value>Y4</value> </data><data name="Y4_Desc_Key"  ><value>Y4 : Format number% +|- number.</value></data>
+<data name="Y5_Display_Key"  ><value>Y5</value> </data><data name="Y5_Desc_Key"  ><value>Y5 : Format number% +|- number.</value></data>
 
 <data name="W1_Display_Key"  ><value>W1</value> </data><data name="W1_Desc_Key"  ><value>W1</value></data>
 <data name="W2_Display_Key"  ><value>W2</value> </data><data name="W2_Desc_Key"  ><value>W2</value></data>
